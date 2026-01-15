@@ -155,15 +155,17 @@
         /* ========================================
              TALLY EMBED STYLES
              ======================================== */
-        .tally-embed-container {
+        .tally-embed-wrapper {
             background: white;
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
             border: 2px dashed #d0d6dd;
+            min-height: 400px;
+            transition: min-height 0.3s ease;
         }
         
-        .tally-embed-container iframe {
+        .tally-embed-wrapper iframe {
             display: block;
             width: 100%;
             border: none;
@@ -264,7 +266,7 @@
                 font-size: 1.3rem;
             }
 
-            .tally-embed-container {
+            .tally-embed-wrapper {
                 border-radius: 16px;
             }
 
@@ -408,7 +410,7 @@
                 Isilah identitas dan jawaban pertanyaan di bawah ini dengan teliti. Klik <strong>"Kirim"</strong> di akhir formulir untuk mengirimkan jawabanmu!
             </p>
             
-            <div class="tally-embed-container">
+            <div class="tally-embed-wrapper" id="tally-embed-wrapper">
                 <iframe 
                     src="https://tally.so/embed/yP4qep?align=1&dynamicHeight=1&hideTitle=1&transparentBackground=1&colorPrimary=%233498db" 
                     loading="lazy"
@@ -438,25 +440,58 @@
     </div>
     
     <script>
-        // Listen for Tally form submission completion
-        window.addEventListener('message', function(event) {
-            // Check for Tally submission event
-            if (event.data && event.data.type === 'tally.formSubmitted') {
-                console.log('Form submitted successfully via Tally!');
-                
-                // Show completion section
-                const completionSection = document.getElementById('completion-section');
-                if (completionSection) {
-                    completionSection.style.display = 'block';
+        // Tally Dynamic Height Handler
+        document.addEventListener('DOMContentLoaded', function() {
+            const wrapper = document.getElementById('tally-embed-wrapper');
+            const iframe = document.getElementById('tally-frame-museum');
+            
+            if (wrapper && iframe) {
+                // Listen for height messages from Tally
+                window.addEventListener('message', function(event) {
+                    // Check if message is from Tally
+                    if (event.data && event.data.type === 'tally.height') {
+                        const newHeight = event.data.height;
+                        
+                        // Update wrapper min-height
+                        wrapper.style.minHeight = newHeight + 'px';
+                        
+                        // Update iframe height
+                        iframe.style.height = newHeight + 'px';
+                        
+                        console.log('Tally iframe height updated:', newHeight + 'px');
+                    }
                     
-                    // Smooth scroll to completion message
-                    setTimeout(function() {
-                        completionSection.scrollIntoView({ 
-                            behavior: 'smooth', 
-                            block: 'center' 
-                        });
-                    }, 100);
-                }
+                    // Handle form submission
+                    if (event.data && event.data.type === 'tally.formSubmitted') {
+                        console.log('Form submitted successfully!');
+                        
+                        // Show completion section
+                        const completionSection = document.getElementById('completion-section');
+                        if (completionSection) {
+                            completionSection.style.display = 'block';
+                            
+                            // Smooth scroll to completion message
+                            setTimeout(function() {
+                                completionSection.scrollIntoView({ 
+                                    behavior: 'smooth', 
+                                    block: 'center' 
+                                });
+                            }, 100);
+                        }
+                    }
+                });
+                
+                // Fallback: Check for height changes every 500ms
+                // This ensures height updates even if message event fails
+                setInterval(function() {
+                    const currentHeight = wrapper.offsetHeight;
+                    const iframeHeight = iframe.offsetHeight;
+                    
+                    // If there's a significant difference, adjust
+                    if (Math.abs(currentHeight - iframeHeight) > 100) {
+                        wrapper.style.minHeight = iframeHeight + 'px';
+                    }
+                }, 500);
             }
         });
     </script>
