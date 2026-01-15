@@ -2,11 +2,11 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Kejar Sains 2026 - SMP PGII 1 Bandung - Museum Bank Indonesia</title>
     <style>
         /* ========================================
-           MOBILE-FIRST BASE STYLES
+           APP-LIKE LAYOUT - MOBILE FIRST
            ======================================== */
         * {
             margin: 0;
@@ -21,24 +21,39 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(180deg, #e8f4fc 0%, #f5f9fc 100%);
+            background: #f5f5f5;
             min-height: 100vh;
-            padding: 20px 16px;
-            line-height: 1.6;
             color: #2c3e50;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* App Container - Full Height */
+        .app-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            max-width: 100vw;
             overflow-x: hidden;
         }
 
-        .container {
-            max-width: 750px;
-            margin: 0 auto;
+        /* ========================================
+           TOP NAVIGATION - FIXED
+           ======================================== */
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 56px;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            z-index: 1000;
         }
 
-        /* ========================================
-           BACK LINK - MOBILE
-           ======================================== */
         .back-link {
             display: inline-flex;
             align-items: center;
@@ -47,179 +62,183 @@
             text-decoration: none;
             font-weight: 500;
             font-size: 0.95rem;
-            margin-bottom: 24px;
-            padding: 12px 4px;
-            transition: color 0.2s ease;
+            padding: 8px 12px;
+            margin: -8px -12px;
+            border-radius: 8px;
+            transition: background 0.2s ease;
             -webkit-tap-highlight-color: transparent;
         }
 
         .back-link:hover {
-            color: #2980b9;
-        }
-
-        .back-link:active {
-            color: #2471a3;
+            background: #f0f4f8;
         }
 
         .back-link svg {
             width: 20px;
             height: 20px;
-            flex-shrink: 0;
         }
 
-        /* ========================================
-           HEADER - MOBILE
-           ======================================== */
-        .header {
-            background: white;
-            border-radius: 16px;
-            padding: 24px 20px;
-            box-shadow: 0 4px 20px rgba(52, 152, 219, 0.1);
-            margin-bottom: 24px;
-            border-left: 4px solid #3498db;
-        }
-
-        .location-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: #ebf5fb;
-            color: #3498db;
-            padding: 8px 14px;
-            border-radius: 20px;
-            font-size: 0.8rem;
+        .top-nav-title {
+            flex: 1;
+            text-align: center;
             font-weight: 600;
-            margin-bottom: 16px;
-        }
-
-        .location-badge svg {
-            width: 16px;
-            height: 16px;
-        }
-
-        h1 {
-            font-size: 1.35rem;
+            font-size: 1rem;
             color: #1a2a3a;
-            margin-bottom: 8px;
-            line-height: 1.3;
-            font-weight: 700;
         }
 
-        .header-desc {
-            color: #5a6a7a;
-            font-size: 0.9rem;
-            line-height: 1.5;
+        .top-nav-spacer {
+            width: 72px; /* Balance back link width */
         }
 
         /* ========================================
-           SUBJECT SECTIONS - MOBILE
+           MAIN CONTENT - SCROLLABLE
            ======================================== */
-        .subject-section {
-            background: white;
-            border-radius: 14px;
-            padding: 24px 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
-        }
-
-        .subject-header {
+        .main-content {
+            flex: 1;
+            margin-top: 56px;
+            margin-bottom: 72px;
+            padding: 16px;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
             display: flex;
-            align-items: center;
-            gap: 14px;
-            margin-bottom: 24px;
-            padding-bottom: 16px;
-            border-bottom: 2px solid #f0f4f8;
+            flex-direction: column;
         }
 
-        .subject-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
+        /* ========================================
+           BOTTOM NAVIGATION - FIXED
+           ======================================== */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 72px;
+            background: white;
+            box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.08);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: white;
-            flex-shrink: 0;
+            padding: 0 16px;
+            z-index: 1000;
         }
 
-        .ips { background: linear-gradient(135deg, #f39c12, #d68910); }
+        .bottom-nav-content {
+            text-align: center;
+            color: #7a8a9a;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
 
-        .subject-title {
-            font-size: 1.15rem;
-            color: #1a2a3a;
+        @media (prefers-color-scheme: dark) {
+            .bottom-nav-content {
+                color: #bdc3c7;
+            }
+            
+            .bottom-nav-content strong {
+                color: #5dade2;
+            }
+        }
+
+        .bottom-nav-content strong {
+            color: #3498db;
             font-weight: 600;
-            line-height: 1.3;
         }
 
         /* ========================================
-              TALLY EMBED STYLES - AUTO HEIGHT
-              ======================================== */
-        .tally-embed-wrapper {
-            background: white;
+           TALLY FORM EMBED
+           ======================================== */
+        .form-container {
+            background: #ffffff;
             border-radius: 12px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
-            border: 2px dashed #d0d6dd;
-            width: 100%;
-            /* Start with reasonable height, Tally will adjust */
-            min-height: 80vh;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e0e6ed;
         }
-        
-        .tally-embed-wrapper iframe {
+
+        .form-container iframe {
+            display: block;
+            width: 100%;
+            border: none;
+            min-height: 60vh;
+            background: #ffffff;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .form-container {
+                background: #2c3e50;
+                border-color: #4a5a6a;
+                box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+            }
+
+            .form-container iframe {
+                background: #2c3e50;
+            }
+        }
+
+        .form-container iframe {
             display: block;
             width: 100%;
             border: none;
             min-height: 80vh;
+            height: 100vh;
+            max-height: none;
         }
 
         /* ========================================
-             COMPLETION SECTION STYLES
-             ======================================== */
+           COMPLETION MESSAGE
+           ======================================== */
+        .completion-section {
+            display: none;
+            padding: 24px;
+            background: #ffffff;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e0e6ed;
+        }
+
         .completion-icon {
             font-size: 3rem;
             margin-bottom: 16px;
         }
-        
+
         .completion-title {
             color: #27ae60;
+            font-size: 1.25rem;
+            font-weight: 600;
             margin-bottom: 12px;
         }
 
-        /* ========================================
-             SUBJECT SECTION - FULL HEIGHT FLOW
-             ======================================== */
-        .subject-section {
-            background: white;
-            border-radius: 14px;
-            padding: 24px 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+        .completion-text {
+            color: #5a6a7a;
+            font-size: 0.95rem;
+            line-height: 1.7;
         }
 
-        /* ========================================
-             FOOTER - MOBILE
-             ======================================== */
-        .footer {
-            text-align: center;
-            margin-top: 32px;
-            padding: 24px 16px;
-            color: #7a8a9a;
-            font-size: 0.85rem;
-            line-height: 1.5;
+        @media (prefers-color-scheme: dark) {
+            .completion-section {
+                background: #2c3e50;
+                border-color: #4a5a6a;
+            }
+
+            .completion-text {
+                color: #bdc3c7;
+            }
         }
 
         /* ========================================
            DESKTOP STYLES (min-width: 768px)
            ======================================== */
         @media (min-width: 768px) {
-            body {
-                padding: 32px 40px;
+            .top-nav {
+                height: 64px;
+                padding: 0 24px;
             }
 
             .back-link {
-                margin-bottom: 32px;
                 font-size: 1rem;
+                padding: 10px 16px;
+                margin: -10px -16px;
             }
 
             .back-link svg {
@@ -227,159 +246,82 @@
                 height: 22px;
             }
 
-            .header {
-                padding: 36px 32px;
-                border-radius: 20px;
-                margin-bottom: 32px;
-                border-left-width: 6px;
+            .top-nav-title {
+                font-size: 1.1rem;
             }
 
-            .location-badge {
-                padding: 10px 18px;
-                font-size: 0.9rem;
-                margin-bottom: 20px;
+            .top-nav-spacer {
+                width: 80px;
             }
 
-            .location-badge svg {
-                width: 18px;
-                height: 18px;
+            .main-content {
+                margin-top: 64px;
+                margin-bottom: 80px;
+                padding: 24px;
+                flex: 1;
             }
 
-            h1 {
-                font-size: 1.75rem;
-                margin-bottom: 12px;
+            .bottom-nav {
+                height: 80px;
+                padding: 0 24px;
             }
 
-            .header-desc {
-                font-size: 1rem;
-            }
-
-            .subject-section {
-                padding: 32px;
-                border-radius: 16px;
-                margin-bottom: 24px;
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-                overflow: visible;
-            }
-
-            .subject-header {
-                gap: 18px;
-                margin-bottom: 28px;
-                padding-bottom: 20px;
-            }
-
-            .subject-icon {
-                width: 56px;
-                height: 56px;
-                border-radius: 14px;
-                font-size: 1.25rem;
-            }
-
-            .subject-title {
-                font-size: 1.3rem;
-            }
-
-            .tally-embed-wrapper {
-                border-radius: 16px;
-            }
-            
-            .tally-embed-wrapper iframe {
-                min-height: 90vh;
-            }
-
-            .footer {
-                margin-top: 40px;
-                padding: 32px;
+            .bottom-nav-content {
                 font-size: 0.9rem;
             }
-        }
 
-        /* ========================================
-             LARGE DESKTOP (min-width: 1024px)
-             ======================================== */
-        @media (min-width: 1024px) {
-            .container {
+            .form-container {
+                border-radius: 16px;
                 max-width: 800px;
+                margin: 0 auto;
+                min-height: 85vh;
             }
 
-            h1 {
-                font-size: 2rem;
+            .form-container iframe {
+                min-height: 85vh;
+                height: 100vh;
             }
         }
 
         /* ========================================
-           ACCESSIBILITY & DARK MODE SUPPORT
+           ACCESSIBILITY & DARK MODE
            ======================================== */
         @media (prefers-color-scheme: dark) {
             body {
-                background: linear-gradient(180deg, #1a2a3a 0%, #2c3e50 100%);
+                background: #1a2a3a;
                 color: #ecf0f1;
             }
 
-            .header, .subject-section, .submit-section {
+            .top-nav, .bottom-nav {
                 background: #2c3e50;
-                border-color: rgba(255, 255, 255, 0.1);
             }
 
-            h1, .subject-title {
+            .top-nav-title {
                 color: #ecf0f1;
             }
 
-            .header-desc, .question-text, .footer {
+            .back-link:hover {
+                background: #3d5166;
+            }
+
+            .form-container {
+                background: #2c3e50;
+            }
+
+            .completion-section {
+                background: #2c3e50;
+            }
+
+            .completion-title {
+                color: #2ecc71;
+            }
+
+            .completion-text {
                 color: #bdc3c7;
             }
-
-            .question-number {
-                color: #5dade2;
-            }
-
-            .location-badge {
-                background: #1a2a3a;
-                color: #5dade2;
-            }
-
-            .essay-input {
-                background: #1a2a3a;
-                border-color: #4a5a6a;
-                color: #ecf0f1;
-            }
-
-            .essay-input::placeholder {
-                color: #7a8a9a;
-            }
-
-            .answer-space {
-                background: #1a2a3a;
-                border-color: #4a5a6a;
-                color: #7a8a9a;
-            }
-
-            .subject-header {
-                border-bottom-color: #4a5a6a;
-            }
-            
-            .tally-embed-container {
-                background: #2c3e50;
-                border-color: #4a5a6a;
-            }
         }
 
-        /* Reduced motion */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                transition: none !important;
-                animation: none !important;
-            }
-        }
-
-        /* High contrast mode */
-        @media (prefers-contrast: high) {
-            .subject-section {
-                border: 2px solid #2c3e50;
-            }
-        }
-
-        /* Focus styles for accessibility */
+        /* Focus styles */
         .back-link:focus {
             outline: 3px solid #3498db;
             outline-offset: 2px;
@@ -393,101 +335,109 @@
             outline: 3px solid #3498db;
             outline-offset: 2px;
         }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                transition: none !important;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="index.html" class="back-link" aria-label="Kembali ke menu utama">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <line x1="19" y1="12" x2="5" y2="12"/>
-                <polyline points="12 19 5 12 12 5"/>
-            </svg>
-            Kembali ke Menu Utama
-        </a>
-
-        <header class="header">
-            <div class="location-badge">
+    <div class="app-container">
+        <!-- Top Navigation -->
+        <nav class="top-nav" aria-label="Navigation utama">
+            <a href="index.html" class="back-link" aria-label="Kembali ke menu utama">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/>
+                    <line x1="19" y1="12" x2="5" y2="12"/>
+                    <polyline points="12 19 5 12 12 5"/>
                 </svg>
-                Museum Bank Indonesia
-            </div>
-            <h1>Kejar Sains 2026 - SMP PGII 1 Bandung</h1>
-            <p class="header-desc">Outing Class Museum Bank Indonesia. Jawablah pertanyaan di bawah ini dengan teliti berdasarkan pengetahuanmu saat kunjungan!</p>
-        </header>
+                Kembali
+            </a>
+            <span class="top-nav-title">Kejar Sains 2026</span>
+            <span class="top-nav-spacer"></span>
+        </nav>
 
-        <!-- Tally Form Section -->
-        <section class="subject-section" aria-labelledby="tally-form-title">
-            <div class="subject-header">
-                <div class="subject-icon ips" aria-hidden="true">1</div>
-                <h2 id="tally-form-title" class="subject-title">Formulir Jawaban Worksheet</h2>
-            </div>
-            
-            <p style="color: #3a4a5a; font-size: 0.95rem; line-height: 1.7; margin-bottom: 20px;">
-                Isilah identitas dan jawaban pertanyaan di bawah ini dengan teliti. Klik <strong>"Kirim"</strong> di akhir formulir untuk mengirimkan jawabanmu!
-            </p>
-            
-            <div class="tally-embed-wrapper" id="tally-embed-wrapper">
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Form Tally -->
+            <div class="form-container">
                 <iframe 
-                    src="https://tally.so/embed/yP4qep?align=1&dynamicHeight=1&hideTitle=1&transparentBackground=1&colorPrimary=%233498db" 
+                    src="https://tally.so/embed/yP4qep?align=1&dynamicHeight=1&hideTitle=1&colorPrimary=%233498db" 
                     loading="lazy"
                     style="width: 100%; border: none;"
-                    title="Formulir Jawaban Worksheet"
+                    title="Formulir Jawaban Museum Bank Indonesia"
                     id="tally-frame">
                 </iframe>
             </div>
-        </section>
 
-        <!-- Completion Message (Hidden by default) -->
-        <div class="submit-section" id="completion-section" style="display: none; margin-top: 24px;">
-            <div style="padding: 20px;">
-                <div style="font-size: 3rem; margin-bottom: 16px;">BERHASIL</div>
-                <h3 style="color: #27ae60; margin-bottom: 12px;">Jawaban Terkirim!</h3>
-                <p style="color: #5a6a7a; line-height: 1.7;">
+            <!-- Completion Message -->
+            <div class="completion-section" id="completion-section">
+                <div class="completion-icon">BERHASIL</div>
+                <h2 class="completion-title">Jawaban Terkirim!</h2>
+                <p class="completion-text">
                     Terima kasih sudah mengerjakan worksheet Museum Bank Indonesia dengan teliti.<br><br>
                     Jawaban kamu sudah terkirim dan siap dinilai oleh guru.<br><br>
                     <strong>Selanjutnya:</strong> Screenshot halaman ini sebagai bukti dan serahkan kepada guru pengawas.
                 </p>
             </div>
-        </div>
+        </main>
 
-        <footer class="footer">
-            <p>Kejar Sains 2026 - SMP PGII 1 Bandung | Outing Class Museum Bank Indonesia</p>
+        <!-- Bottom Navigation -->
+        <footer class="bottom-nav" aria-label="Informasi program">
+            <div class="bottom-nav-content">
+                <strong>Kejar Sains 2026</strong> - Outing Class SMP PGII 1 Bandung
+            </div>
         </footer>
     </div>
-    
+
     <script>
-        // Tally Auto Height Handler
+        // Tally Form Handler
         document.addEventListener('DOMContentLoaded', function() {
-            const wrapper = document.getElementById('tally-embed-wrapper');
             const iframe = document.getElementById('tally-frame');
+            const formContainer = document.querySelector('.form-container');
             
-            if (wrapper && iframe) {
-                // Listen for height messages from Tally
-                window.addEventListener('message', function(event) {
-                    // Handle height updates from Tally
-                    if (event.data && event.data.type === 'tally.height') {
-                        const newHeight = event.data.height;
-                        
-                        // Update both wrapper and iframe
-                        wrapper.style.height = newHeight + 'px';
+            // Listen for height updates from Tally
+            window.addEventListener('message', function(event) {
+                // Handle height updates from Tally
+                if (event.data && event.data.type === 'tally.height') {
+                    const newHeight = event.data.height;
+                    
+                    // Update iframe and container height
+                    if (iframe) {
                         iframe.style.height = newHeight + 'px';
                     }
-                    
-                    // Handle form submission
-                    if (event.data && event.data.type === 'tally.formSubmitted') {
-                        const completionSection = document.getElementById('completion-section');
-                        if (completionSection) {
-                            completionSection.style.display = 'block';
-                            
-                            setTimeout(function() {
-                                completionSection.scrollIntoView({ 
-                                    behavior: 'smooth', 
-                                    block: 'center' 
-                                });
-                            }, 100);
-                        }
+                    if (formContainer) {
+                        formContainer.style.minHeight = newHeight + 'px';
                     }
+                    
+                    console.log('Tally height updated:', newHeight + 'px');
+                }
+                
+                // Handle form submission
+                if (event.data && event.data.type === 'tally.formSubmitted') {
+                    const completionSection = document.getElementById('completion-section');
+                    const formContainer = document.getElementById('form-container');
+                    
+                    if (completionSection && formContainer) {
+                        // Hide form and show completion
+                        formContainer.style.display = 'none';
+                        completionSection.style.display = 'block';
+                        
+                        // Scroll to top
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                }
+            });
+            
+            // Fallback: Ensure iframe has reasonable height after load
+            if (iframe) {
+                iframe.addEventListener('load', function() {
+                    setTimeout(function() {
+                        iframe.style.height = '85vh';
+                        console.log('Fallback height applied: 85vh');
+                    }, 2000);
                 });
             }
         });
