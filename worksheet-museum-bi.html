@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Worksheet Museum Bank Indonesia - Kejar Sains</title>
+    <title>Kejar Sains 2026 - SMP PGII 1 Bandung - Museum Bank Indonesia</title>
     <style>
         /* ========================================
            MOBILE-FIRST BASE STYLES
@@ -167,6 +167,7 @@
             display: block;
             width: 100%;
             border: none;
+            min-height: 400px;
         }
 
         /* ========================================
@@ -266,10 +267,6 @@
             .tally-embed-container {
                 border-radius: 16px;
             }
-            
-            .tally-embed-container iframe {
-                height: 750px;
-            }
 
             .footer {
                 margin-top: 40px;
@@ -288,10 +285,6 @@
 
             h1 {
                 font-size: 2rem;
-            }
-            
-            .tally-embed-container iframe {
-                height: 750px;
             }
         }
 
@@ -400,27 +393,27 @@
                 </svg>
                 Museum Bank Indonesia
             </div>
-            <h1>Worksheet: Ekonomi dan Sejarah Indonesia</h1>
-            <p class="header-desc">Jawablah pertanyaan di bawah ini dengan teliti berdasarkan pengetahuanmu saat kunjungan ke Museum Bank Indonesia!</p>
+            <h1>Kejar Sains 2026 - SMP PGII 1 Bandung</h1>
+            <p class="header-desc">Outing Class Museum Bank Indonesia. Jawablah pertanyaan di bawah ini dengan teliti berdasarkan pengetahuanmu saat kunjungan!</p>
         </header>
 
         <!-- Tally Form Section -->
         <section class="subject-section" aria-labelledby="tally-form-title">
             <div class="subject-header">
-                <div class="subject-icon ips" aria-hidden="true">📝</div>
-                <h2 id="tally-form-title" class="subject-title">Formulir Jawaban</h2>
+                <div class="subject-icon ips" aria-hidden="true">1</div>
+                <h2 id="tally-form-title" class="subject-title">Formulir Jawaban Worksheet</h2>
             </div>
             
             <p style="color: #3a4a5a; font-size: 0.95rem; line-height: 1.7; margin-bottom: 20px;">
-                Isilah semua pertanyaan di bawah ini, lalu klik <strong>"Kirim"</strong> di akhir formulir untuk mengirimkan jawabanmu!
+                Isilah identitas dan jawaban pertanyaan di bawah ini dengan teliti. Klik <strong>"Kirim"</strong> di akhir formulir untuk mengirimkan jawabanmu!
             </p>
             
             <div class="tally-embed-container">
                 <iframe 
                     src="https://tally.so/embed/yP4qep?align=1&dynamicHeight=1&hideTitle=1&transparentBackground=1&colorPrimary=%233498db" 
                     loading="lazy"
-                    style="width: 100%; height: 750px; border: none;"
-                    title="Formulir Jawaban Museum BI"
+                    style="width: 100%; border: none;"
+                    title="Formulir Jawaban Worksheet"
                     id="tally-frame-museum">
                 </iframe>
             </div>
@@ -429,10 +422,10 @@
         <!-- Completion Message (Hidden by default) -->
         <div class="submit-section" id="completion-section" style="display: none; margin-top: 24px;">
             <div style="padding: 20px;">
-                <div style="font-size: 3rem; margin-bottom: 16px;">🎉</div>
+                <div style="font-size: 3rem; margin-bottom: 16px;">BERHASIL</div>
                 <h3 style="color: #27ae60; margin-bottom: 12px;">Jawaban Terkirim!</h3>
                 <p style="color: #5a6a7a; line-height: 1.7;">
-                    Terima kasih sudah mengerjakan worksheet Museum Bank Indonesia dengan teliti!<br><br>
+                    Terima kasih sudah mengerjakan worksheet Museum Bank Indonesia dengan teliti.<br><br>
                     Jawaban kamu sudah terkirim dan siap dinilai oleh guru.<br><br>
                     <strong>Selanjutnya:</strong> Screenshot halaman ini sebagai bukti dan serahkan kepada guru pengawas.
                 </p>
@@ -440,7 +433,7 @@
         </div>
 
         <footer class="footer">
-            <p>Kejar Sains - Outing Class 2024 | Museum Bank Indonesia Worksheet</p>
+            <p>Kejar Sains 2026 - SMP PGII 1 Bandung | Outing Class Museum Bank Indonesia</p>
         </footer>
     </div>
     
@@ -449,7 +442,7 @@
         window.addEventListener('message', function(event) {
             // Check for Tally submission event
             if (event.data && event.data.type === 'tally.formSubmitted') {
-                console.log('✅ Form submitted successfully via Tally!');
+                console.log('Form submitted successfully via Tally!');
                 
                 // Show completion section
                 const completionSection = document.getElementById('completion-section');
