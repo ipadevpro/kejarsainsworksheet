@@ -6,12 +6,25 @@
     <title>Kejar Sains 2026 - SMP PGII 1 Bandung - Worksheet Collection</title>
     <style>
         /* ========================================
-           APP-LIKE LAYOUT - MOBILE FIRST
+           NEO-BRUTALISM - GEN Z STYLE
            ======================================== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --yellow: #FFE500;
+            --pink: #FF6B9D;
+            --cyan: #00FFFF;
+            --green: #39FF14;
+            --orange: #FF6B35;
+            --purple: #9D4EDD;
+            --blue: #3A86FF;
+            --red: #FF003C;
         }
 
         html {
@@ -20,15 +33,14 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: #f5f5f5;
+            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--yellow);
+            color: var(--black);
             min-height: 100vh;
-            color: #2c3e50;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* App Container - Full Height */
+        /* App Container */
         .app-container {
             display: flex;
             flex-direction: column;
@@ -38,16 +50,16 @@
         }
 
         /* ========================================
-           TOP NAVIGATION - FIXED
+           TOP NAV - NEO-BRUTALISM
            ======================================== */
         .top-nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            height: 56px;
-            background: white;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            height: 60px;
+            background-color: var(--pink);
+            border-bottom: 4px solid var(--black);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -56,10 +68,11 @@
         }
 
         .top-nav-title {
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: #1a2a3a;
-            text-align: center;
+            font-weight: 900;
+            font-size: 1.2rem;
+            color: var(--black);
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .top-nav-spacer {
@@ -67,35 +80,35 @@
         }
 
         /* ========================================
-           MAIN CONTENT - SCROLLABLE
+           MAIN CONTENT
            ======================================== */
         .main-content {
             flex: 1;
-            margin-top: 56px;
-            margin-bottom: 72px;
+            margin-top: 60px;
+            margin-bottom: 80px;
             padding: 16px;
             overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
         }
 
         /* ========================================
-           CARDS - MOBILE
+           CARDS - NEO-BRUTAL STYLE
            ======================================== */
         .location-card {
-            background: #ffffff;
-            border-radius: 16px;
+            background-color: var(--white);
+            border: 4px solid var(--black);
+            border-radius: 0;
             padding: 20px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
             margin-bottom: 16px;
             text-decoration: none;
             color: inherit;
             display: block;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            border: 1px solid #e0e6ed;
+            box-shadow: 8px 8px 0 var(--black);
+            transition: all 0.1s ease;
         }
 
         .location-card:active {
-            transform: scale(0.98);
+            transform: translate(4px, 4px);
+            box-shadow: 4px 4px 0 var(--black);
         }
 
         .location-card::before {
@@ -104,16 +117,16 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
-            border-radius: 16px 16px 0 0;
+            height: 8px;
+            background: var(--black);
         }
 
-        .museum-bi::before {
-            background: linear-gradient(90deg, #3498db, #5dade2);
+        .museum-bi {
+            background-color: var(--cyan);
         }
 
-        .dufan::before {
-            background: linear-gradient(90deg, #e74c3c, #ec7063);
+        .dufan {
+            background-color: var(--red);
         }
 
         .location-header {
@@ -124,34 +137,29 @@
         }
 
         .location-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
+            width: 52px;
+            height: 52px;
+            border: 4px solid var(--black);
+            border-radius: 0;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            background-color: var(--white);
         }
 
         .museum-bi .location-icon {
-            background: linear-gradient(135deg, #ebf5fb, #d6eaf8);
+            background-color: var(--blue);
         }
 
         .dufan .location-icon {
-            background: linear-gradient(135deg, #fdedec, #fadbd8);
+            background-color: var(--orange);
         }
 
         .location-icon svg {
             width: 28px;
             height: 28px;
-        }
-
-        .museum-bi .location-icon svg {
-            color: #3498db;
-        }
-
-        .dufan .location-icon svg {
-            color: #e74c3c;
+            color: var(--black);
         }
 
         .location-title {
@@ -160,54 +168,61 @@
         }
 
         .location-name {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: #1a2a3a;
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: var(--black);
             margin-bottom: 4px;
-            line-height: 1.3;
+            line-height: 1.2;
+            text-transform: uppercase;
         }
 
         .location-desc {
             font-size: 0.85rem;
-            color: #7a8a9a;
+            font-weight: 700;
+            color: var(--black);
             line-height: 1.4;
         }
 
+        /* ========================================
+           WORKSHEET INFO
+           ======================================== */
         .worksheet-info {
-            background: #f8fafc;
-            border-radius: 10px;
+            background-color: var(--white);
+            border: 3px solid var(--black);
             padding: 14px;
+            margin-bottom: 14px;
         }
 
         .worksheet-title {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #1a2a3a;
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--black);
             margin-bottom: 12px;
+            text-transform: uppercase;
         }
 
         .subject-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 6px;
+            gap: 8px;
             margin-bottom: 12px;
         }
 
         .subject-tag {
-            background: white;
-            border: 1.5px solid #e0e6ed;
-            border-radius: 16px;
-            padding: 4px 12px;
+            background-color: var(--yellow);
+            border: 3px solid var(--black);
+            padding: 6px 12px;
             font-size: 0.75rem;
-            font-weight: 500;
-            color: #5a6a7a;
+            font-weight: 700;
+            color: var(--black);
+            text-transform: uppercase;
         }
 
         .worksheet-meta {
             display: flex;
             gap: 16px;
             padding-top: 12px;
-            border-top: 1px solid #e0e6ed;
+            border-top: 3px solid var(--black);
         }
 
         .meta-item {
@@ -215,66 +230,82 @@
             align-items: center;
             gap: 6px;
             font-size: 0.8rem;
-            color: #7a8a9a;
+            font-weight: 700;
+            color: var(--black);
         }
 
         .meta-item svg {
-            width: 16px;
-            height: 16px;
-            opacity: 0.7;
+            width: 18px;
+            height: 18px;
+            color: var(--black);
         }
 
+        /* ========================================
+           BUTTON - NEO-BRUTAL
+           ======================================== */
         .btn-worksheet {
             display: block;
             width: 100%;
-            margin-top: 14px;
             padding: 14px 20px;
-            border: none;
-            border-radius: 10px;
-            font-size: 0.95rem;
-            font-weight: 600;
+            border: 4px solid var(--black);
+            font-size: 1rem;
+            font-weight: 900;
             text-align: center;
             text-decoration: none;
+            text-transform: uppercase;
             -webkit-tap-highlight-color: transparent;
             touch-action: manipulation;
+            box-shadow: 6px 6px 0 var(--black);
         }
 
         .museum-bi .btn-worksheet {
-            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
-            color: white;
+            background-color: var(--yellow);
+            color: var(--black);
+        }
+
+        .museum-bi .btn-worksheet:active {
+            background-color: var(--blue);
+            transform: translate(3px, 3px);
+            box-shadow: 3px 3px 0 var(--black);
         }
 
         .dufan .btn-worksheet {
-            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
-            color: white;
+            background-color: var(--cyan);
+            color: var(--black);
+        }
+
+        .dufan .btn-worksheet:active {
+            background-color: var(--orange);
+            transform: translate(3px, 3px);
+            box-shadow: 3px 3px 0 var(--black);
         }
 
         /* ========================================
            INSTRUCTIONS SECTION
            ======================================== */
         .instructions {
-            background: #ffffff;
-            border-radius: 16px;
+            background-color: var(--white);
+            border: 4px solid var(--black);
             padding: 20px;
             margin-top: 8px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-            border: 1px solid #e0e6ed;
+            box-shadow: 8px 8px 0 var(--black);
         }
 
         .instructions h2 {
-            font-size: 1rem;
-            color: #1a2a3a;
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: var(--black);
             margin-bottom: 16px;
             display: flex;
             align-items: center;
             gap: 10px;
+            text-transform: uppercase;
         }
 
         .instructions h2 svg {
-            width: 22px;
-            height: 22px;
-            color: #3498db;
-            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            color: var(--black);
         }
 
         .instructions-list {
@@ -285,10 +316,11 @@
             padding: 10px 0;
             padding-left: 32px;
             position: relative;
-            color: #5a6a7a;
             font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--black);
             line-height: 1.5;
-            border-bottom: 1px solid #f0f4f8;
+            border-bottom: 3px solid var(--black);
         }
 
         .instructions-list li:last-child {
@@ -297,45 +329,32 @@
         }
 
         .instructions-list li::before {
-            content: '';
+            content: '✓';
             position: absolute;
             left: 0;
             top: 50%;
             transform: translateY(-50%);
             width: 20px;
             height: 20px;
-            background: #e8f5e9;
-            border-radius: 50%;
-        }
-
-        .instructions-list li svg {
-            position: absolute;
-            left: 5px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 12px;
-            height: 12px;
-            color: #27ae60;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            .instructions-list li {
-                color: #bdc3c7;
-                border-bottom-color: #4a5a6a;
-            }
+            background-color: var(--green);
+            border: 2px solid var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 900;
         }
 
         /* ========================================
-           BOTTOM NAVIGATION - FIXED
+           BOTTOM NAV
            ======================================== */
         .bottom-nav {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
-            height: 72px;
-            background: white;
-            box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.08);
+            height: 80px;
+            background-color: var(--black);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -345,52 +364,49 @@
 
         .bottom-nav-content {
             text-align: center;
-            color: #7a8a9a;
+            color: var(--yellow);
             font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             line-height: 1.5;
         }
 
-        @media (prefers-color-scheme: dark) {
-            .bottom-nav-content {
-                color: #bdc3c7;
-            }
-            
-            .bottom-nav-content strong {
-                color: #5dade2;
-            }
-        }
-
         .bottom-nav-content strong {
-            color: #3498db;
-            font-weight: 600;
+            color: var(--white);
+            font-size: 1rem;
         }
 
         /* ========================================
-           DESKTOP STYLES (min-width: 768px)
+           DESKTOP STYLES
            ======================================== */
         @media (min-width: 768px) {
             .top-nav {
-                height: 64px;
-                padding: 0 24px;
+                height: 70px;
             }
 
             .top-nav-title {
-                font-size: 1.25rem;
+                font-size: 1.4rem;
             }
 
             .main-content {
-                margin-top: 64px;
-                margin-bottom: 80px;
+                margin-top: 70px;
+                margin-bottom: 90px;
                 padding: 24px;
-                max-width: 900px;
+                max-width: 1000px;
                 margin-left: auto;
                 margin-right: auto;
             }
 
             .location-card {
-                padding: 24px;
-                border-radius: 20px;
-                margin-bottom: 20px;
+                padding: 28px;
+                border-width: 5px;
+                box-shadow: 12px 12px 0 var(--black);
+                margin-bottom: 24px;
+            }
+
+            .location-card:active {
+                box-shadow: 6px 6px 0 var(--black);
             }
 
             .location-header {
@@ -399,9 +415,9 @@
             }
 
             .location-icon {
-                width: 56px;
-                height: 56px;
-                border-radius: 14px;
+                width: 60px;
+                height: 60px;
+                border-width: 4px;
             }
 
             .location-icon svg {
@@ -410,7 +426,7 @@
             }
 
             .location-name {
-                font-size: 1.35rem;
+                font-size: 1.4rem;
             }
 
             .location-desc {
@@ -418,161 +434,172 @@
             }
 
             .worksheet-info {
-                padding: 18px;
-                border-radius: 12px;
+                padding: 20px;
+                border-width: 4px;
             }
 
             .worksheet-title {
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
 
             .subject-tag {
-                padding: 6px 14px;
+                padding: 8px 16px;
                 font-size: 0.85rem;
             }
 
             .worksheet-meta {
-                padding-top: 14px;
+                padding-top: 16px;
             }
 
             .meta-item {
-                font-size: 0.9rem;
-            }
-
-            .meta-item svg {
-                width: 18px;
-                height: 18px;
-            }
-
-            .btn-worksheet {
-                margin-top: 16px;
-                padding: 16px 24px;
-                font-size: 1rem;
-            }
-
-            .instructions {
-                padding: 24px;
-                border-radius: 20px;
-            }
-
-            .instructions h2 {
-                font-size: 1.1rem;
-                margin-bottom: 20px;
-            }
-
-            .instructions h2 svg {
-                width: 24px;
-                height: 24px;
-            }
-
-            .instructions-list li {
-                padding: 12px 0;
-                padding-left: 36px;
                 font-size: 0.95rem;
             }
 
-            .instructions-list li::before {
+            .meta-item svg {
                 width: 22px;
                 height: 22px;
             }
 
-            .instructions-list li svg {
-                width: 14px;
-                height: 14px;
-                left: 6px;
+            .btn-worksheet {
+                padding: 18px 28px;
+                font-size: 1.1rem;
+                border-width: 5px;
+                box-shadow: 10px 10px 0 var(--black);
+            }
+
+            .instructions {
+                padding: 28px;
+                border-width: 5px;
+                box-shadow: 12px 12px 0 var(--black);
+            }
+
+            .instructions h2 {
+                font-size: 1.3rem;
+                margin-bottom: 24px;
+            }
+
+            .instructions h2 svg {
+                width: 28px;
+                height: 28px;
+            }
+
+            .instructions-list li {
+                padding: 14px 0;
+                padding-left: 40px;
+                font-size: 1rem;
+            }
+
+            .instructions-list li::before {
+                width: 24px;
+                height: 24px;
+                font-size: 14px;
             }
 
             .bottom-nav {
-                height: 80px;
-                padding: 0 24px;
+                height: 90px;
             }
 
             .bottom-nav-content {
-                font-size: 0.9rem;
+                font-size: 1rem;
+            }
+
+            .bottom-nav-content strong {
+                font-size: 1.3rem;
             }
         }
 
         /* ========================================
-           ACCESSIBILITY & DARK MODE
+           ACCESSIBILITY - HIGH CONTRAST
            ======================================== */
         @media (prefers-color-scheme: dark) {
             body {
-                background: #1a2a3a;
-                color: #ecf0f1;
+                background-color: var(--purple);
+                color: var(--white);
             }
 
-            .top-nav, .bottom-nav {
-                background: #2c3e50;
+            .top-nav {
+                background-color: var(--black);
+                border-color: var(--white);
             }
 
             .top-nav-title {
-                color: #ecf0f1;
+                color: var(--yellow);
             }
 
             .location-card {
-                background: #2c3e50;
-                border-color: rgba(255, 255, 255, 0.1);
+                background-color: var(--gray);
+                border-color: var(--white);
+                box-shadow: 8px 8px 0 var(--white);
             }
 
-            .location-name {
-                color: #ecf0f1;
+            .location-name, .location-desc {
+                color: var(--white);
             }
 
             .worksheet-info {
-                background: #1a2a3a;
+                background-color: var(--black);
+                border-color: var(--white);
             }
 
             .worksheet-title {
-                color: #ecf0f1;
+                color: var(--white);
             }
 
             .subject-tag {
-                background: #1a2a3a;
-                border-color: #4a5a6a;
-                color: #bdc3c7;
-            }
-
-            .worksheet-meta {
-                border-top-color: #4a5a6a;
+                background-color: var(--pink);
+                color: var(--black);
+                border-color: var(--white);
             }
 
             .meta-item {
-                color: #bdc3c7;
+                color: var(--white);
+            }
+
+            .meta-item svg {
+                color: var(--white);
             }
 
             .instructions {
-                background: #2c3e50;
+                background-color: var(--gray);
+                border-color: var(--white);
+                box-shadow: 8px 8px 0 var(--white);
             }
 
             .instructions h2 {
-                color: #ecf0f1;
+                color: var(--white);
+            }
+
+            .instructions h2 svg {
+                color: var(--white);
             }
 
             .instructions-list li {
-                color: #bdc3c7;
-                border-bottom-color: #4a5a6a;
+                color: var(--white);
+                border-color: var(--white);
             }
 
-            .instructions-list li::before {
-                background: #27ae60;
+            .bottom-nav {
+                background-color: var(--white);
+            }
+
+            .bottom-nav-content {
+                color: var(--purple);
+            }
+
+            .bottom-nav-content strong {
+                color: var(--black);
             }
         }
 
         /* Focus styles */
         .location-card:focus {
-            outline: 3px solid #3498db;
-            outline-offset: 2px;
+            outline: 4px solid var(--yellow);
+            outline-offset: 4px;
         }
 
         .btn-worksheet:focus {
-            outline: 3px solid rgba(255, 255, 255, 0.5);
-            outline-offset: 2px;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            .location-card:focus {
-                outline-color: #5dade2;
-            }
+            outline: 4px solid var(--cyan);
+            outline-offset: 4px;
         }
 
         /* Reduced motion */
@@ -598,13 +625,13 @@
             <a href="worksheet-museum-bi.html" class="location-card museum-bi">
                 <div class="location-header">
                     <div class="location-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/>
                         </svg>
                     </div>
                     <div class="location-title">
                         <h2 class="location-name">Museum Bank Indonesia</h2>
-                        <p class="location-desc">Eksplorasi sejarah dan ekonomi Indonesia</p>
+                        <p class="location-desc">Eksplorasi sejarah & ekonomi Indonesia</p>
                     </div>
                 </div>
 
@@ -619,14 +646,14 @@
 
                     <div class="worksheet-meta">
                         <div class="meta-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
                                 <circle cx="12" cy="12" r="10"/>
                                 <polyline points="12 6 12 12 16 14"/>
                             </svg>
                             <span>10 Pertanyaan</span>
                         </div>
                         <div class="meta-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
                                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                                 <polyline points="14 2 14 8 20 8"/>
                             </svg>
@@ -644,7 +671,7 @@
             <a href="worksheet-dufan.html" class="location-card dufan">
                 <div class="location-header">
                     <div class="location-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <circle cx="12" cy="12" r="10"/>
                             <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
                             <line x1="9" y1="9" x2="9.01" y2="9"/>
@@ -653,7 +680,7 @@
                     </div>
                     <div class="location-title">
                         <h2 class="location-name">Dufan</h2>
-                        <p class="location-desc">Belajar fisika melalui wahana amusement park</p>
+                        <p class="location-desc">Belajar fisika di Dufan</p>
                     </div>
                 </div>
 
@@ -668,14 +695,14 @@
 
                     <div class="worksheet-meta">
                         <div class="meta-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
                                 <circle cx="12" cy="12" r="10"/>
                                 <polyline points="12 6 12 12 16 14"/>
                             </svg>
                             <span>10 Pertanyaan</span>
                         </div>
                         <div class="meta-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
                                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                                 <polyline points="14 2 14 8 20 8"/>
                             </svg>
@@ -692,7 +719,7 @@
             <!-- Instructions Section -->
             <section class="instructions" aria-labelledby="instructions-title">
                 <h2 id="instructions-title">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
                         <circle cx="12" cy="12" r="10"/>
                         <line x1="12" y1="16" x2="12" y2="12"/>
                         <line x1="12" y1="8" x2="12.01" y2="8"/>
@@ -700,42 +727,12 @@
                     Petunjuk Pengisian
                 </h2>
                 <ol class="instructions-list">
-                    <li>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                            <polyline points="20 6 9 17 4 12"/>
-                        </svg>
-                        Baca setiap pertanyaan dengan teliti sebelum menjawab
-                    </li>
-                    <li>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                            <polyline points="20 6 9 17 4 12"/>
-                        </svg>
-                        Kerjakan secara berurutan dari nomor 1 sampai selesai
-                    </li>
-                    <li>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                            <polyline points="20 6 9 17 4 12"/>
-                        </svg>
-                        Gunakan waktu dengan efisien
-                    </li>
-                    <li>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                            <polyline points="20 6 9 17 4 12"/>
-                        </svg>
-                        Tulis jawaban dengan rapi dan jelas
-                    </li>
-                    <li>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                            <polyline points="20 6 9 17 4 12"/>
-                        </svg>
-                        Jika ada kesulitan, tanyakan kepada guru pengawas
-                    </li>
-                    <li>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                            <polyline points="20 6 9 17 4 12"/>
-                        </svg>
-                        Periksa kembali jawaban sebelum mengumpulkan
-                    </li>
+                    <li>Baca setiap pertanyaan dengan teliti sebelum menjawab</li>
+                    <li>Kerjakan secara berurutan dari nomor 1 sampai selesai</li>
+                    <li>Gunakan waktu dengan efisien</li>
+                    <li>Tulis jawaban dengan rapi dan jelas</li>
+                    <li>Jika ada kesulitan, tanyakan kepada guru pengawas</li>
+                    <li>Periksa kembali jawaban sebelum mengumpulkan</li>
                 </ol>
             </section>
         </main>
