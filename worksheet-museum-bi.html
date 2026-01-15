@@ -161,15 +161,15 @@
             overflow: hidden;
             box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
             border: 2px dashed #d0d6dd;
-            min-height: 400px;
-            transition: min-height 0.3s ease;
+            width: 100%;
         }
         
         .tally-embed-wrapper iframe {
             display: block;
             width: 100%;
             border: none;
-            min-height: 400px;
+            height: auto;
+            overflow: hidden;
         }
 
         /* ========================================
@@ -416,7 +416,8 @@
                     loading="lazy"
                     style="width: 100%; border: none;"
                     title="Formulir Jawaban Worksheet"
-                    id="tally-frame-museum">
+                    id="tally-frame-museum"
+                    onload="adjustTallyHeight()">
                 </iframe>
             </div>
         </section>
@@ -441,36 +442,85 @@
     
     <script>
         // Tally Dynamic Height Handler
-        document.addEventListener('DOMContentLoaded', function() {
-            const wrapper = document.getElementById('tally-embed-wrapper');
+        function adjustTallyHeight() {
             const iframe = document.getElementById('tally-frame-museum');
+            const wrapper = document.getElementById('tally-embed-wrapper');
             
-            if (wrapper && iframe) {
-                // Listen for height messages from Tally
+            if (iframe && wrapper) {
+                // Try to get height from Tally message
+                const adjustHeight = function() {
+                    // Try to access iframe content height
+                    let iframeHeight = 0;
+                    
+                    try {
+                        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                        if (iframeDoc) {
+                            iframeHeight = iframeDoc.body.scrollHeight;
+                        }
+                    } catch (e) {
+                        // Cross-origin restriction, use default height
+                        iframeHeight = 800;
+                    }
+                    
+                    // Minimum height to show form
+                    if (iframeHeight < 600) {
+                        iframeHeight = 600;
+                    }
+                    
+                    // Apply height to wrapper and iframe
+                    wrapper.style.height = iframeHeight + 'px';
+                    iframe.style.height = iframeHeight + 'px';
+                    
+                    console.log('Tally height adjusted to:', iframeHeight + 'px');
+                };
+                
+                // Initial adjustment
+                setTimeout(adjustHeight, 1000);
+                
+                // Periodic height check (every 300ms)
+                let lastHeight = 0;
+                setInterval(function() {
+                    let currentHeight = 0;
+                    
+                    try {
+                        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                        if (iframeDoc) {
+                            currentHeight = iframeDoc.body.scrollHeight;
+                        }
+                    } catch (e) {
+                        currentHeight = 800;
+                    }
+                    
+                    if (currentHeight < 600) {
+                        currentHeight = 600;
+                    }
+                    
+                    // Only update if height changed significantly
+                    if (Math.abs(currentHeight - lastHeight) > 50) {
+                        wrapper.style.height = currentHeight + 'px';
+                        iframe.style.height = currentHeight + 'px';
+                        lastHeight = currentHeight;
+                        console.log('Height updated to:', currentHeight + 'px');
+                    }
+                }, 300);
+                
+                // Listen for Tally height messages
                 window.addEventListener('message', function(event) {
-                    // Check if message is from Tally
                     if (event.data && event.data.type === 'tally.height') {
-                        const newHeight = event.data.height;
-                        
-                        // Update wrapper min-height
-                        wrapper.style.minHeight = newHeight + 'px';
-                        
-                        // Update iframe height
-                        iframe.style.height = newHeight + 'px';
-                        
-                        console.log('Tally iframe height updated:', newHeight + 'px');
+                        const height = Math.max(event.data.height, 600);
+                        wrapper.style.height = height + 'px';
+                        iframe.style.height = height + 'px';
+                        console.log('Height from Tally:', height + 'px');
                     }
                     
                     // Handle form submission
                     if (event.data && event.data.type === 'tally.formSubmitted') {
                         console.log('Form submitted successfully!');
                         
-                        // Show completion section
                         const completionSection = document.getElementById('completion-section');
                         if (completionSection) {
                             completionSection.style.display = 'block';
                             
-                            // Smooth scroll to completion message
                             setTimeout(function() {
                                 completionSection.scrollIntoView({ 
                                     behavior: 'smooth', 
@@ -480,19 +530,13 @@
                         }
                     }
                 });
-                
-                // Fallback: Check for height changes every 500ms
-                // This ensures height updates even if message event fails
-                setInterval(function() {
-                    const currentHeight = wrapper.offsetHeight;
-                    const iframeHeight = iframe.offsetHeight;
-                    
-                    // If there's a significant difference, adjust
-                    if (Math.abs(currentHeight - iframeHeight) > 100) {
-                        wrapper.style.minHeight = iframeHeight + 'px';
-                    }
-                }, 500);
             }
+        }
+        
+        // Initialize on DOM ready
+        document.addEventListener('DOMContentLoaded', function() {
+            // Small delay to ensure iframe is ready
+            setTimeout(adjustTallyHeight, 500);
         });
     </script>
 </body>
