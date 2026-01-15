@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worksheet Dufan - Kejar Sains</title>
+    <style>
+        /* ========================================
+           MOBILE-FIRST BASE STYLES
+           ======================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(180deg, #fdf2f2 0%, #fef5f5 100%);
+            min-height: 100vh;
+            padding: 20px 16px;
+            line-height: 1.6;
+            color: #2c3e50;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        /* ========================================
+           BACK LINK - MOBILE
+           ======================================== */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #e74c3c;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+            padding: 12px 4px;
+            transition: color 0.2s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .back-link:hover {
+            color: #c0392b;
+        }
+
+        .back-link:active {
+            color: #a93226;
+        }
+
+        .back-link svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        /* ========================================
+           HEADER - MOBILE
+           ======================================== */
+        .header {
+            background: white;
+            border-radius: 16px;
+            padding: 24px 20px;
+            box-shadow: 0 4px 20px rgba(231, 76, 60, 0.1);
+            margin-bottom: 24px;
+            border-left: 4px solid #e74c3c;
+        }
+
+        .location-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #fdf2f2;
+            color: #e74c3c;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .location-badge svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        h1 {
+            font-size: 1.35rem;
+            color: #1a2a3a;
+            margin-bottom: 8px;
+            line-height: 1.3;
+            font-weight: 700;
+        }
+
+        .header-desc {
+            color: #5a6a7a;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* ========================================
+           SUBJECT SECTIONS - MOBILE
+           ======================================== */
+        .subject-section {
+            background: white;
+            border-radius: 14px;
+            padding: 24px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+        }
+
+        .subject-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #f0f4f8;
+        }
+
+        .subject-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .fisika { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+        .matematika { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
+        .bahasa-indonesia { background: linear-gradient(135deg, #27ae60, #229954); }
+        .ips { background: linear-gradient(135deg, #f39c12, #d68910); }
+        .bahasa-inggris { background: linear-gradient(135deg, #3498db, #2980b9); }
+        .pjok { background: linear-gradient(135deg, #1abc9c, #16a085); }
+
+        .subject-title {
+            font-size: 1.15rem;
+            color: #1a2a3a;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        /* ========================================
+           QUESTIONS - MOBILE
+           ======================================== */
+        .question {
+            margin-bottom: 28px;
+        }
+
+        .question:last-child {
+            margin-bottom: 0;
+        }
+
+        .question-number {
+            font-weight: 600;
+            color: #e74c3c;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
+
+        .question-text {
+            color: #3a4a5a;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .essay-input {
+            width: 100%;
+            border: 2px solid #e0e6ed;
+            border-radius: 10px;
+            padding: 16px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            resize: vertical;
+            min-height: 100px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            background: #fafbfc;
+            color: #2c3e50;
+            -webkit-appearance: none;
+        }
+
+        .essay-input:focus {
+            outline: none;
+            border-color: #e74c3c;
+            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.15);
+            background: white;
+        }
+
+        .essay-input::placeholder {
+            color: #9aa5b5;
+        }
+
+        .highlight-box {
+            background: #fff5f5;
+            border-left: 4px solid #e74c3c;
+            padding: 16px 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .highlight-box strong {
+            color: #e74c3c;
+        }
+
+        .diagram-box {
+            border: 2px solid #fADAD8;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            background: #fdf9f9;
+        }
+
+        .diagram-title {
+            font-weight: 600;
+            color: #e74c3c;
+            margin-bottom: 16px;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        .force-arrow {
+            text-align: center;
+            font-weight: 600;
+            color: #c0392b;
+            margin: 12px 0;
+            font-size: 0.9rem;
+        }
+
+        /* ========================================
+           SUBMIT SECTION - MOBILE
+           ======================================== */
+        .submit-section {
+            background: white;
+            border-radius: 16px;
+            padding: 24px 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            min-height: 52px;
+            width: 100%;
+        }
+
+        .btn-submit:hover {
+            background: linear-gradient(135deg, #c0392b 0%, #a93226 100%);
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+        }
+
+        .btn-submit:active {
+            transform: scale(0.98);
+            box-shadow: 0 2px 10px rgba(231, 76, 60, 0.3);
+        }
+
+        /* ========================================
+           FOOTER - MOBILE
+           ======================================== */
+        .footer {
+            text-align: center;
+            margin-top: 32px;
+            padding: 24px 16px;
+            color: #7a8a9a;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        /* ========================================
+           DESKTOP STYLES (min-width: 768px)
+           ======================================== */
+        @media (min-width: 768px) {
+            body {
+                padding: 32px 40px;
+            }
+
+            .back-link {
+                margin-bottom: 32px;
+                font-size: 1rem;
+            }
+
+            .back-link svg {
+                width: 22px;
+                height: 22px;
+            }
+
+            .header {
+                padding: 36px 32px;
+                border-radius: 20px;
+                margin-bottom: 32px;
+                border-left-width: 6px;
+            }
+
+            .location-badge {
+                padding: 10px 18px;
+                font-size: 0.9rem;
+                margin-bottom: 20px;
+            }
+
+            .location-badge svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            h1 {
+                font-size: 1.75rem;
+                margin-bottom: 12px;
+            }
+
+            .header-desc {
+                font-size: 1rem;
+            }
+
+            .subject-section {
+                padding: 32px;
+                border-radius: 16px;
+                margin-bottom: 24px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            }
+
+            .subject-header {
+                gap: 18px;
+                margin-bottom: 28px;
+                padding-bottom: 20px;
+            }
+
+            .subject-icon {
+                width: 56px;
+                height: 56px;
+                border-radius: 14px;
+                font-size: 1.25rem;
+            }
+
+            .subject-title {
+                font-size: 1.3rem;
+            }
+
+            .question {
+                margin-bottom: 32px;
+            }
+
+            .question-text {
+                font-size: 1rem;
+                margin-bottom: 20px;
+            }
+
+            .essay-input {
+                padding: 20px;
+                font-size: 1rem;
+                min-height: 120px;
+                border-radius: 12px;
+            }
+
+            .highlight-box {
+                padding: 20px 24px;
+                margin: 24px 0;
+            }
+
+            .diagram-box {
+                padding: 28px;
+                margin: 24px 0;
+                border-radius: 14px;
+            }
+
+            .diagram-title {
+                font-size: 1rem;
+                margin-bottom: 20px;
+            }
+
+            .submit-section {
+                padding: 36px 32px;
+                border-radius: 20px;
+                margin-top: 16px;
+            }
+
+            .btn-submit {
+                padding: 18px 48px;
+                font-size: 1.1rem;
+                min-height: 56px;
+                width: auto;
+                min-width: 250px;
+            }
+
+            .footer {
+                margin-top: 40px;
+                padding: 32px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* ========================================
+           LARGE DESKTOP (min-width: 1024px)
+           ======================================== */
+        @media (min-width: 1024px) {
+            .container {
+                max-width: 800px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* ========================================
+           ACCESSIBILITY & DARK MODE SUPPORT
+           ======================================== */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: linear-gradient(180deg, #2c1a1a 0%, #3d2525 100%);
+                color: #ecf0f1;
+            }
+
+            .header, .subject-section, .submit-section {
+                background: #3d2525;
+                border-color: rgba(255, 255, 255, 0.1);
+            }
+
+            h1, .subject-title {
+                color: #ecf0f1;
+            }
+
+            .header-desc, .question-text, .footer {
+                color: #bdc3c7;
+            }
+
+            .question-number {
+                color: #ec7063;
+            }
+
+            .location-badge {
+                background: #2c1a1a;
+                color: #ec7063;
+            }
+
+            .essay-input {
+                background: #2c1a1a;
+                border-color: #5a3a3a;
+                color: #ecf0f1;
+            }
+
+            .essay-input::placeholder {
+                color: #7a5a5a;
+            }
+
+            .highlight-box {
+                background: #2c1a1a;
+                border-color: #5a3a3a;
+            }
+
+            .diagram-box {
+                background: #2c1a1a;
+                border-color: #5a3a3a;
+            }
+
+            .subject-header {
+                border-bottom-color: #5a3a3a;
+            }
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                transition: none !important;
+                animation: none !important;
+            }
+        }
+
+        /* High contrast mode */
+        @media (prefers-contrast: high) {
+            .subject-section {
+                border: 2px solid #2c3e50;
+            }
+
+            .essay-input {
+                border-width: 3px;
+            }
+        }
+
+        /* Focus styles for accessibility */
+        .btn-submit:focus,
+        .back-link:focus,
+        .essay-input:focus {
+            outline: 3px solid #e74c3c;
+            outline-offset: 2px;
+        }
+
+        .btn-submit:focus:not(:focus-visible),
+        .back-link:focus:not(:focus-visible),
+        .essay-input:focus:not(:focus-visible) {
+            outline: none;
+        }
+
+        .btn-submit:focus-visible,
+        .back-link:focus-visible,
+        .essay-input:focus-visible {
+            outline: 3px solid #e74c3c;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link" aria-label="Kembali ke menu utama">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <line x1="19" y1="12" x2="5" y2="12"/>
+                <polyline points="12 19 5 12 12 5"/>
+            </svg>
+            Kembali ke Menu Utama
+        </a>
+
+        <header class="header">
+            <div class="location-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/>
+                </svg>
+                Dufan (Dunia Fantasi)
+            </div>
+            <h1>Worksheet: Fisika di Dunia Fantasi</h1>
+            <p class="header-desc">Jawablah pertanyaan berikut dengan teliti! Amati berbagai wahana di Dufan dan terapkan pengetahuan fisika serta mata pelajaran lainnya.</p>
+        </header>
+
+        <!-- Fisika -->
+        <section class="subject-section" aria-labelledby="fisika-title">
+            <div class="subject-header">
+                <div class="subject-icon fisika" aria-hidden="true">F</div>
+                <h2 id="fisika-title" class="subject-title">Fisika</h2>
+            </div>
+
+            <article class="question">
+                <p class="question-number">1.</p>
+                <p class="question-text">Perhatikan wahana "Kora-Kora" (roller coaster). Jelaskan prinsip kerja roller coaster berdasarkan hukum Newton dan konsep energi! Mengapa kereta roller coaster tidak memerlukan mesin untuk bergerak setelah mencapai puncak pertama?</p>
+                <textarea class="essay-input" placeholder="Jawabanmu di sini..." aria-label="Jawaban pertanyaan 1 Fisika" style="min-height: 150px;"></textarea>
+            </article>
+
+            <article class="question">
+                <p class="question-number">2.</p>
+                <p class="question-text">Jika tinggi bukit pertama roller coaster adalah 40 meter dan massa gerbong adalah 500 kg, hitunglah:<br><br>a) Energi potensial gravitasi di puncak bukit (g = 10 m/s²)<br>b) Jika kereta bergerak dengan kecepatan 20 m/s di dasar bukit, berapakah kecepatannya di puncak bukit? (abaikan gesekan)</p>
+                <textarea class="essay-input" placeholder="Perhitungan dan jawaban di sini..." aria-label="Jawaban pertanyaan 2 Fisika"></textarea>
+            </article>
+
+            <div class="highlight-box">
+                <strong>Wahana untuk diamati:</strong> Tornado, Halilintar, Kora-Kora, Arung Jeram
+            </div>
+
+            <article class="question">
+                <p class="question-number">3.</p>
+                <p class="question-text">Pada wahana "Arung Jeram", perahu yang bergerak dengan kecepatan 5 m/s tiba-tiba berhenti saat menabrak bebatuan. Jelaskan konsep inersia dan impuls yang terjadi pada situasi ini! Mengapa penumpang yang berdiri akan terpental ke depan?</p>
+                <textarea class="essay-input" placeholder="Jawabanmu di sini..." aria-label="Jawaban pertanyaan 3 Fisika"></textarea>
+            </article>
+        </section>
+
+        <!-- Matematika -->
+        <section class="subject-section" aria-labelledby="matematika-title">
+            <div class="subject-header">
+                <div class="subject-icon matematika" aria-hidden="true">M</div>
+                <h2 id="matematika-title" class="subject-title">Matematika</h2>
+            </div>
+
+            <article class="question">
+                <p class="question-number">1.</p>
+                <p class="question-text">Wahana "Flying Eagle" berputar dengan membentuk lintasan berbentuk lingkaran berdiameter 20 meter.<br><br>a) Berapakah keliling lintasan tersebut?<br>b) Jika wahana berputar 3 kali dalam 1 menit, berapakah kecepatan sudut (ω) dalam rad/s?</p>
+                <textarea class="essay-input" placeholder="Perhitungan di sini..." aria-label="Jawaban pertanyaan 1 Matematika"></textarea>
+            </article>
+
+            <article class="question">
+                <p class="question-number">2.</p>
+                <p class="question-text">Tiga wahana di Dufan memiliki tinggi berbeda:<br><br>- Tornado: 30 meter<br>- Halilintar: 25 meter<br>- Kora-Kora: 45 meter<br><br>a) Urutkan tinggi wahana dari yang tertinggi ke terendah!<br>b) Berapakah selisih tinggi antara Kora-Kora dan Halilintar?<br>c) Berapakah rata-rata tinggi ketiga wahana tersebut?</p>
+                <textarea class="essay-input" placeholder="Jawaban di sini..." aria-label="Jawaban pertanyaan 2 Matematika"></textarea>
+            </article>
+        </section>
+
+        <!-- Bahasa Indonesia -->
+        <section class="subject-section" aria-labelledby="bi-title">
+            <div class="subject-header">
+                <div class="subject-icon bahasa-indonesia" aria-hidden="true">BI</div>
+                <h2 id="bi-title" class="subject-title">Bahasa Indonesia</h2>
+            </div>
+
+            <article class="question">
+                <p class="question-number">1.</p>
+                <p class="question-text">Buatlah teks observasi tentang satu wahana favoritmu di Dufan! Pastikan berisi:<br><br>- Identifikasi (nama wahana, lokasi)<br>- Deskripsi (bentuk, warna, cara kerja)<br>- Kesimpulan (pengalaman dan kesan)</p>
+                <textarea class="essay-input" placeholder="Teks observasimu di sini..." aria-label="Jawaban pertanyaan 1 Bahasa Indonesia" style="min-height: 200px;"></textarea>
+            </article>
+
+            <article class="question">
+                <p class="question-number">2.</p>
+                <p class="question-text">Perhatikan kalimat berikut:<br><br>"Wahana roller coaster terasa sangat mendebarkan karena kecepatan yang tinggi."<br><br>Tentukan:<br>a) Kata sifat dalam kalimat tersebut<br>b) Kata benda dalam kalimat tersebut<br>c) Sinonim kata "mendebarkan"</p>
+                <textarea class="essay-input" placeholder="Jawaban di sini..." aria-label="Jawaban pertanyaan 2 Bahasa Indonesia"></textarea>
+            </article>
+        </section>
+
+        <!-- IPS -->
+        <section class="subject-section" aria-labelledby="ips-title">
+            <div class="subject-header">
+                <div class="subject-icon ips" aria-hidden="true">IPS</div>
+                <h2 id="ips-title" class="subject-title">Ilmu Pengetahuan Sosial</h2>
+            </div>
+
+            <article class="question">
+                <p class="question-number">1.</p>
+                <p class="question-text">Dufan merupakan theme park yang dikembangkan oleh PT Pembangunan Perumahan (PT PP). Jelaskan:<br><br>a) Apa peran sektor pariwisata bagi ekonomi Indonesia?<br>b) Bagaimana pembangunan tempat wisata seperti Dufan dapat menciptakan lapangan kerja?<br>c) Apa dampak positif dan negatif keberadaan Dufan bagi masyarakat sekitar?</p>
+                <textarea class="essay-input" placeholder="Jawaban di sini..." aria-label="Jawaban pertanyaan 1 IPS" style="min-height: 200px;"></textarea>
+            </article>
+
+            <article class="question">
+                <p class="question-number">2.</p>
+                <p class="question-text">Jika kamu manajer Dufan, strategi apa yang akan kamu terapkan untuk menarik lebih banyak wisatawan domestik dan mancanegara? Jelaskan 3 strategi!</p>
+                <textarea class="essay-input" placeholder="Strategimu di sini..." aria-label="Jawaban pertanyaan 2 IPS"></textarea>
+            </article>
+        </section>
+
+        <!-- Bahasa Inggris -->
+        <section class="subject-section" aria-labelledby="inggris-title">
+            <div class="subject-header">
+                <div class="subject-icon bahasa-inggris" aria-hidden="true">EN</div>
+                <h2 id="inggris-title" class="subject-title">Bahasa Inggris</h2>
+            </div>
+
+            <article class="question">
+                <p class="question-number">1.</p>
+                <p class="question-text">Complete the following sentences with the correct words:<br><br>a) The roller coaster moves very _______ (fast/fastly)<br>b) Dufan is one of the most _______ theme parks in Indonesia (popular)<br>c) We _______ (have/had/has) a great time at Dufan yesterday<br>d) The ride was so exciting that I wanted to ride it _______ (again/again)</p>
+                <textarea class="essay-input" placeholder="Your answers here..." aria-label="Grammar answers"></textarea>
+            </article>
+
+            <article class="question">
+                <p class="question-number">2.</p>
+                <p class="question-text">Write a short paragraph (at least 5 sentences) about your experience at Dufan! Use past tense and descriptive words.</p>
+                <textarea class="essay-input" placeholder="Your paragraph here..." aria-label="Paragraph about Dufan experience" style="min-height: 150px;"></textarea>
+            </article>
+        </section>
+
+        <!-- PJOK -->
+        <section class="subject-section" aria-labelledby="pjok-title">
+            <div class="subject-header">
+                <div class="subject-icon pjok" aria-hidden="true">PJOK</div>
+                <h2 id="pjok-title" class="subject-title">Pendidikan Jasmani, Olah Raga, dan Kesehatan</h2>
+            </div>
+
+            <article class="question">
+                <p class="question-number">1.</p>
+                <p class="question-text">Saat bermain di Dufan, aktivitas fisik apa saja yang kamu lakukan? Jelaskan bagaimana aktivitas tersebut berkontribusi terhadap kesehatan:<br><br>a) Kesehatan jasmani (tubuh)<br>b) Kesehatan mental (pikiran)<br>c) Kesehatan sosial (berinteraksi dengan teman)</p>
+                <textarea class="essay-input" placeholder="Jawabanmu di sini..." aria-label="Jawaban pertanyaan 1 PJOK"></textarea>
+            </article>
+
+            <article class="question">
+                <p class="question-number">2.</p>
+                <p class="question-text">Sebelum memasuki wahana yang menantang, biasanya pengunjung diberikan safety briefing. Mengapa penting untuk:<br><br>a) Menggunakan sabuk pengaman dengan benar?<br>b) Mematuhi peraturan tinggi dan berat badan yang ditentukan?<br>c) Mengikuti instruksi petugas dengan seksama?</p>
+                <textarea class="essay-input" placeholder="Jawaban di sini..." aria-label="Jawaban pertanyaan 2 PJOK"></textarea>
+            </article>
+
+            <div class="highlight-box">
+                <strong>Tips Kesehatan:</strong> Jangan lupa stretching sebelum beraktivitas, minum air yang cukup, dan istirahat jika lelah!
+            </div>
+        </section>
+
+        <div class="submit-section">
+            <button class="btn-submit" id="btn-submit-dufan" aria-label="Selesai mengerjakan worksheet">
+                Selesai Mengerjakan
+            </button>
+        </div>
+
+        <footer class="footer">
+            <p>Kejar Sains - Outing Class 2024 | Dufan Worksheet</p>
+        </footer>
+    </div>
+    
+    <!-- Tally Integration -->
+    <script src="js/tally-config.js"></script>
+    <script src="js/tally-integration.js"></script>
+    <script>
+        // Initialize Tally integration for Dufan worksheet
+        document.addEventListener('DOMContentLoaded', function() {
+            const submitBtn = document.getElementById('btn-submit-dufan');
+            
+            if (submitBtn) {
+                submitBtn.addEventListener('click', function() {
+                    // Check if TallyIntegration is available
+                    if (window.TallyIntegration) {
+                        TallyIntegration.startSubmission('dufan');
+                    } else {
+                        // Fallback to original behavior
+                        alert('Terima kasih telah mengerjakan worksheet ini!\n\nJangan lupa mengumpulkan kepada guru pengawas.');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

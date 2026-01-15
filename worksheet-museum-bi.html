@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worksheet Museum Bank Indonesia - Kejar Sains</title>
+    <style>
+        /* ========================================
+           MOBILE-FIRST BASE STYLES
+           ======================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(180deg, #e8f4fc 0%, #f5f9fc 100%);
+            min-height: 100vh;
+            padding: 20px 16px;
+            line-height: 1.6;
+            color: #2c3e50;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        /* ========================================
+           BACK LINK - MOBILE
+           ======================================== */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+            padding: 12px 4px;
+            transition: color 0.2s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .back-link:hover {
+            color: #2980b9;
+        }
+
+        .back-link:active {
+            color: #2471a3;
+        }
+
+        .back-link svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        /* ========================================
+           HEADER - MOBILE
+           ======================================== */
+        .header {
+            background: white;
+            border-radius: 16px;
+            padding: 24px 20px;
+            box-shadow: 0 4px 20px rgba(52, 152, 219, 0.1);
+            margin-bottom: 24px;
+            border-left: 4px solid #3498db;
+        }
+
+        .location-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #ebf5fb;
+            color: #3498db;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .location-badge svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        h1 {
+            font-size: 1.35rem;
+            color: #1a2a3a;
+            margin-bottom: 8px;
+            line-height: 1.3;
+            font-weight: 700;
+        }
+
+        .header-desc {
+            color: #5a6a7a;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* ========================================
+           SUBJECT SECTIONS - MOBILE
+           ======================================== */
+        .subject-section {
+            background: white;
+            border-radius: 14px;
+            padding: 24px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+        }
+
+        .subject-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #f0f4f8;
+        }
+
+        .subject-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .ips { background: linear-gradient(135deg, #f39c12, #d68910); }
+
+        .subject-title {
+            font-size: 1.15rem;
+            color: #1a2a3a;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        /* ========================================
+             TALLY EMBED STYLES
+             ======================================== */
+        .tally-embed-container {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+            border: 2px dashed #d0d6dd;
+        }
+        
+        .tally-embed-container iframe {
+            display: block;
+            width: 100%;
+            border: none;
+        }
+
+        /* ========================================
+             COMPLETION SECTION STYLES
+             ======================================== */
+        .completion-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+        
+        .completion-title {
+            color: #27ae60;
+            margin-bottom: 12px;
+        }
+
+        /* ========================================
+             FOOTER - MOBILE
+             ======================================== */
+        .footer {
+            text-align: center;
+            margin-top: 32px;
+            padding: 24px 16px;
+            color: #7a8a9a;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        /* ========================================
+           DESKTOP STYLES (min-width: 768px)
+           ======================================== */
+        @media (min-width: 768px) {
+            body {
+                padding: 32px 40px;
+            }
+
+            .back-link {
+                margin-bottom: 32px;
+                font-size: 1rem;
+            }
+
+            .back-link svg {
+                width: 22px;
+                height: 22px;
+            }
+
+            .header {
+                padding: 36px 32px;
+                border-radius: 20px;
+                margin-bottom: 32px;
+                border-left-width: 6px;
+            }
+
+            .location-badge {
+                padding: 10px 18px;
+                font-size: 0.9rem;
+                margin-bottom: 20px;
+            }
+
+            .location-badge svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            h1 {
+                font-size: 1.75rem;
+                margin-bottom: 12px;
+            }
+
+            .header-desc {
+                font-size: 1rem;
+            }
+
+            .subject-section {
+                padding: 32px;
+                border-radius: 16px;
+                margin-bottom: 24px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            }
+
+            .subject-header {
+                gap: 18px;
+                margin-bottom: 28px;
+                padding-bottom: 20px;
+            }
+
+            .subject-icon {
+                width: 56px;
+                height: 56px;
+                border-radius: 14px;
+                font-size: 1.25rem;
+            }
+
+            .subject-title {
+                font-size: 1.3rem;
+            }
+
+            .tally-embed-container {
+                border-radius: 16px;
+            }
+            
+            .tally-embed-container iframe {
+                height: 750px;
+            }
+
+            .footer {
+                margin-top: 40px;
+                padding: 32px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* ========================================
+             LARGE DESKTOP (min-width: 1024px)
+             ======================================== */
+        @media (min-width: 1024px) {
+            .container {
+                max-width: 800px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .tally-embed-container iframe {
+                height: 750px;
+            }
+        }
+
+        /* ========================================
+           ACCESSIBILITY & DARK MODE SUPPORT
+           ======================================== */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: linear-gradient(180deg, #1a2a3a 0%, #2c3e50 100%);
+                color: #ecf0f1;
+            }
+
+            .header, .subject-section, .submit-section {
+                background: #2c3e50;
+                border-color: rgba(255, 255, 255, 0.1);
+            }
+
+            h1, .subject-title {
+                color: #ecf0f1;
+            }
+
+            .header-desc, .question-text, .footer {
+                color: #bdc3c7;
+            }
+
+            .question-number {
+                color: #5dade2;
+            }
+
+            .location-badge {
+                background: #1a2a3a;
+                color: #5dade2;
+            }
+
+            .essay-input {
+                background: #1a2a3a;
+                border-color: #4a5a6a;
+                color: #ecf0f1;
+            }
+
+            .essay-input::placeholder {
+                color: #7a8a9a;
+            }
+
+            .answer-space {
+                background: #1a2a3a;
+                border-color: #4a5a6a;
+                color: #7a8a9a;
+            }
+
+            .subject-header {
+                border-bottom-color: #4a5a6a;
+            }
+            
+            .tally-embed-container {
+                background: #2c3e50;
+                border-color: #4a5a6a;
+            }
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                transition: none !important;
+                animation: none !important;
+            }
+        }
+
+        /* High contrast mode */
+        @media (prefers-contrast: high) {
+            .subject-section {
+                border: 2px solid #2c3e50;
+            }
+        }
+
+        /* Focus styles for accessibility */
+        .back-link:focus {
+            outline: 3px solid #3498db;
+            outline-offset: 2px;
+        }
+
+        .back-link:focus:not(:focus-visible) {
+            outline: none;
+        }
+
+        .back-link:focus-visible {
+            outline: 3px solid #3498db;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link" aria-label="Kembali ke menu utama">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <line x1="19" y1="12" x2="5" y2="12"/>
+                <polyline points="12 19 5 12 12 5"/>
+            </svg>
+            Kembali ke Menu Utama
+        </a>
+
+        <header class="header">
+            <div class="location-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/>
+                </svg>
+                Museum Bank Indonesia
+            </div>
+            <h1>Worksheet: Ekonomi dan Sejarah Indonesia</h1>
+            <p class="header-desc">Jawablah pertanyaan di bawah ini dengan teliti berdasarkan pengetahuanmu saat kunjungan ke Museum Bank Indonesia!</p>
+        </header>
+
+        <!-- Tally Form Section -->
+        <section class="subject-section" aria-labelledby="tally-form-title">
+            <div class="subject-header">
+                <div class="subject-icon ips" aria-hidden="true">📝</div>
+                <h2 id="tally-form-title" class="subject-title">Formulir Jawaban</h2>
+            </div>
+            
+            <p style="color: #3a4a5a; font-size: 0.95rem; line-height: 1.7; margin-bottom: 20px;">
+                Isilah semua pertanyaan di bawah ini, lalu klik <strong>"Kirim"</strong> di akhir formulir untuk mengirimkan jawabanmu!
+            </p>
+            
+            <div class="tally-embed-container">
+                <iframe 
+                    src="https://tally.so/embed/yP4qep?align=1&dynamicHeight=1&hideTitle=1&transparentBackground=1&colorPrimary=%233498db" 
+                    loading="lazy"
+                    style="width: 100%; height: 750px; border: none;"
+                    title="Formulir Jawaban Museum BI"
+                    id="tally-frame-museum">
+                </iframe>
+            </div>
+        </section>
+
+        <!-- Completion Message (Hidden by default) -->
+        <div class="submit-section" id="completion-section" style="display: none; margin-top: 24px;">
+            <div style="padding: 20px;">
+                <div style="font-size: 3rem; margin-bottom: 16px;">🎉</div>
+                <h3 style="color: #27ae60; margin-bottom: 12px;">Jawaban Terkirim!</h3>
+                <p style="color: #5a6a7a; line-height: 1.7;">
+                    Terima kasih sudah mengerjakan worksheet Museum Bank Indonesia dengan teliti!<br><br>
+                    Jawaban kamu sudah terkirim dan siap dinilai oleh guru.<br><br>
+                    <strong>Selanjutnya:</strong> Screenshot halaman ini sebagai bukti dan serahkan kepada guru pengawas.
+                </p>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>Kejar Sains - Outing Class 2024 | Museum Bank Indonesia Worksheet</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Listen for Tally form submission completion
+        window.addEventListener('message', function(event) {
+            // Check for Tally submission event
+            if (event.data && event.data.type === 'tally.formSubmitted') {
+                console.log('✅ Form submitted successfully via Tally!');
+                
+                // Show completion section
+                const completionSection = document.getElementById('completion-section');
+                if (completionSection) {
+                    completionSection.style.display = 'block';
+                    
+                    // Smooth scroll to completion message
+                    setTimeout(function() {
+                        completionSection.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'center' 
+                        });
+                    }, 100);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
